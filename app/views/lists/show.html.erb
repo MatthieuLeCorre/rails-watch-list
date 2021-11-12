@@ -1,9 +1,15 @@
-<h1>Movies list</h1>
+<div class="position-relative">
+  <div class="card-category card-large" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('image.jpeg') %>)">
+    <h1><%= @list.name %></h1>
+  </div>
+    <span class="movie-tag"><%= pluralize(@list.movies.size, 'movie') %></span>
+</div>
 
-<ul>
-  <% @list.bookmarks.each do |bookmark| %>
-    <li><%= bookmark.movie.title %> - <%= link_to "delete",  bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure"} %></li>
-  <% end %>
-</ul>
-
+  <ul>
+    <% @list.bookmarks.each do |bookmark| %>
+      <li><%= bookmark.movie.title %> - <%= bookmark.movie.overview %>
+      - <%= link_to "delete",  bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure"} %></li>
+    <% end %>
+  </ul>
+</div>
 <p><%= link_to "add a movie",  new_list_bookmark_path(@list) %></p>
